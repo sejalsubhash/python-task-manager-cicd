@@ -1,0 +1,27 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.10
+    commands:
+      pip install -r requirements.txt
+      pip install pytest
+
+  pre_build:
+    commands:
+      pytest
+
+  build:
+    commands:
+      docker build -t task-manager .
+      docker tag task-manager:latest $REPOSITORY_URI:latest
+
+  post_build:
+    commands:
+      aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin $REPOSITORY_URI
+      docker push $REPOSITORY_URI:latest
+
+artifacts:
+  files:
+    - '**/*'
