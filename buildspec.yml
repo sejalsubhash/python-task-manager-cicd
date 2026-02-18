@@ -3,7 +3,7 @@ version: 0.2
 env:
   variables:
     AWS_DEFAULT_REGION: us-east-2
-    REPOSITORY_URI: 989615686095.dkr.ecr.us-east-2.amazonaws.com/task-manager-cicd/task-manager
+    REPOSITORY_URI: 989615686095.dkr.ecr.us-east-2.amazonaws.com/task-manager-cicd
 
 phases:
   install:
